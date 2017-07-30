@@ -1,0 +1,53 @@
+extends ../layout
+
+append css
+	link(rel='stylesheet',href='css/blog.css')
+block main
+	block header
+		.blog-masthead
+			.container
+				nav.blog-nav
+					if pageName==='/'
+						a.blog-nav-item.active(href="/") 首页
+					else
+						a.blog-nav-item(href="/") 首页
+					if pageName=='/contact'
+						a.blog-nav-item.active(href="/contact") 联系我们
+					else
+						a.blog-nav-item(href="/contact") 联系我们
+					if pageName=='/about'
+						.blog-nav-item.active(href="/about") 联系我们
+					else
+						a.blog-nav-item(href="/about") 关于
+	.container
+		.row
+			.col-sm-8.blog-main
+				block content
+			.col-sm-3.col-sm-offset-1.blog-sidebar
+				.sidebar-module
+					h4 文章分类
+					ol.list-unstyled
+						li
+							a(href="#") 2011
+						li
+							a(href="#") 2012
+						li
+							a(href="#") 2013
+						li
+							a(href="#") 2014
+						li
+							a(href="#") 2015
+				.sidebar-module
+					h4 友情链接
+					ol.list-unstyled
+						li
+							a(href="#") github
+						li
+							a(href="#") twitter
+						li
+							a(href="#") facebook
+	block footer
+		footer.blog-footer
+			p nodeblog by xinqilela.com
+			p
+				a(href="#") back to top
