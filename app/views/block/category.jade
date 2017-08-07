@@ -1,11 +1,14 @@
 extends layout
 
 block content
-    h2.page-header Node全栈开发博客系统
+    h2.page-header
+        =category.title
+        分类下的所有文章
+        =posts.length
     each post in posts
         div.post
             h3.post-title
-                a(href="/posts/view/"+post.slug,target="_blank")
+                a(href="/posts/view/"+post._id,target="_blank")
                     =post.title
             div.post-abstract
                 =truncate(post.content,160)
@@ -27,7 +30,7 @@ block content
                     | 赞:
                     =post.meta.favourates||0
                 span.post-link
-                    a(href="/posts/view/"+post.slug,target="_blank")
+                    a(href="/posts/view/"+post._id,target="_blank")
                         |文章详情
     if pageCount>1
         nav
