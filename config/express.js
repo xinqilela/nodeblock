@@ -13,6 +13,7 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var flash = require('connect-flash');
 var messages = require('express-messages');
+var validator = require('express-validator');
 
 var Category = mongoose.model('Category');
 
@@ -42,6 +43,21 @@ module.exports = function (app, config) {
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({
 		extended: true
+	}));
+	app.use(validator({
+		errorFormatter: function (param, msg, value) {
+			var namespace = param.split('.'),
+				root = namespace.shift(),
+				formParam = root;
+			while (namespace.length) {
+				formParam += '[' + namespace.shift + ']';
+			}
+			return {
+				param: formParam,
+				msg: msg,
+				value: value
+			};
+		}
 	}));
 	app.use(cookieParser());
 	app.use(session({
