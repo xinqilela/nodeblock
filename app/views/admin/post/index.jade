@@ -16,6 +16,9 @@ block content
                 option(value="",selected=(filter.author === "")) -选择作者-
                 each author in authors
                     option(value=author._id,selected=(author._id.toString() === filter.author))= author.name
+        div.form-group
+            label 关键词
+            input#js-keyword.form-control(name="keyword",type="text",value=filter.keyword)
         button#js-filter-submit.btn.btn-info 筛选					
     table.table.table-bordered
         thead
@@ -101,8 +104,11 @@ block content
                 td= post.published? '已发布':'待发布'		
                 td		
                     a(href="/posts/view/"+post._id,class="btn btn-sm btn-success",target="_blank") 查看
-                    a(href="/admin/posts/edit/"+post._id,class="btn btn-sm btn-info") 编辑		
-                    a(href="/admin/posts/delete/"+post._id,class="btn btn-sm btn-danger") 删除	
+                    &nbsp;
+                    a(href="/admin/posts/edit/"+post._id,class="btn btn-sm btn-info") 编辑
+                    &nbsp;					
+                    a(href="/admin/posts/delete/"+post._id,class="btn btn-sm btn-danger") 删除
+                    &nbsp;					
     if pageCount>1
         nav
             ul.pagination
@@ -110,10 +116,10 @@ block content
                 while currentPage<=pageCount
                     if(currentPage==pageNum)				
                         li.active
-                            a(href="/admin/posts?page="+currentPage+"&sortby="+sortby+"&sortdir="+sortdir+"&category="+filter.category+"&author="+filter.author)= currentPage++
+                            a(href="/admin/posts?page="+currentPage+"&sortby="+sortby+"&sortdir="+sortdir+"&category="+filter.category+"&author="+filter.author+"&keyword="+filter.keyword)= currentPage++
                     else	
                         li
-                            a(href="/admin/posts?page="+currentPage+"&sortby="+sortby+"&sortdir="+sortdir+"&category="+filter.category+"&author="+filter.author)= currentPage++
+                            a(href="/admin/posts?page="+currentPage+"&sortby="+sortby+"&sortdir="+sortdir+"&category="+filter.category+"&author="+filter.author+"&keyword="+filter.keyword)= currentPage++
 block scripts
     script(src='/js/querystring.js')
     script(src='/js/admin/post.js')

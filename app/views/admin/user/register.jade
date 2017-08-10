@@ -1,0 +1,16 @@
+extends ../layout_user
+
+block content
+    form.form-signin.form-register(method="post",action="/admin/users/register")
+
+        h2.form-signin-heading 注册
+
+        label.sr-only(for="email") 邮箱
+        input.email.form-control(name="email",type="email",placeholder="Email Address",required,autofocus="")
+        label.sr-only(for="password") 密码
+        input.password.form-control(name="password",type="password",placeholder="Password",required)
+        label.sr-only(for="confirmPassword") 确认密码
+        input.confirm-password.form-control(name="confirmPassword",type="password",placeholder="Confirm Password",required)
+        span#goLogin.pull-right
+                a(href="/admin/users/login") 已有账号,去登陆		
+        button.btn.btn-lg.btn-primary.btn-block(type="submit") 注册

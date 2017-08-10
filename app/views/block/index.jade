@@ -36,7 +36,7 @@ block content
                 while currentPage<=pageCount
                     if(currentPage==pageNum)				
                         li.active
-                            a(href="/posts?page="+currentPage)= currentPage++
+                            a(href="/posts?page="+currentPage+"&keyword="+keyword)= currentPage++
                     else	
                         li
-                            a(href="/posts?page="+currentPage)= currentPage++                    					
+                            a(href="/posts?page="+currentPage+"&keyword="+keyword)= currentPage++                    					

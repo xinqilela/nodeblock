@@ -9,9 +9,14 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-	Post.find({
+	var conditions = {
 		published: true
-	}).sort({
+	};
+	if (req.query.keyword) {
+		conditions.title = new RegExp(req.query.keyword.trim(), 'i');
+		conditions.content = new RegExp(req.query.keyword.trim(), 'i');
+	}
+	Post.find(conditions).sort({
 		created: -1
 	}).populate('author').populate('category').exec(function (err, posts) {
 		if (err) {
@@ -28,7 +33,8 @@ router.get('/', function (req, res, next) {
 			posts: posts.slice((pageNum - 1) * pageSize, pageNum * pageSize),
 			pageNum: pageNum,
 			pageCount: pageCount,
-			pretty: true
+			pretty: true,
+			keyword: req.query.keyword
 		});
 	});
 });

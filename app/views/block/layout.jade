@@ -7,8 +7,8 @@ block main
 	block header
 		.blog-masthead
 			.container
-				nav.blog-nav
-					if pageName==='/'
+				nav.blog-nav.pull-left
+					if pageName==='/posts'
 						a.blog-nav-item.active(href="/") 首页
 					else
 						a.blog-nav-item(href="/") 首页
@@ -20,6 +20,8 @@ block main
 						.blog-nav-item.active(href="/about") 联系我们
 					else
 						a.blog-nav-item(href="/about") 关于
+				form.navbar-form.pull-right(method="get",action="/posts/")
+					input.form-control(type="text",name="keyword",placeholder="搜索...")
 	.container
 		.row
 			.col-sm-8.blog-main
@@ -45,4 +47,8 @@ block main
 		footer.blog-footer
 			p nodeblog by xinqilela.com
 			p
-				a(href="#") back to top
+				a(href="#") 回到顶部
+				&nbsp;&nbsp;
+				a(href="/admin/users/login") 用户登陆
+				&nbsp;&nbsp;
+				a(href="/admin/users/register") 用户注册

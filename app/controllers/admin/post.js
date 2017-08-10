@@ -6,11 +6,11 @@ var express = require('express'),
 	Category = mongoose.model('Category'),
 	User = mongoose.model('User'),
 	pinyin = require('pinyin');
-
+var auth = require('./user');
 module.exports = function (app) {
 	app.use('/admin/posts', router);
 };
-router.get('/', function (req, res, next) {
+router.get('/', auth.requireLogin, function (req, res, next) {
 
 	//排序功能
 	var sortby = req.query.sortby ? req.query.sortby : 'created';
@@ -31,6 +31,10 @@ router.get('/', function (req, res, next) {
 	}
 	if (req.query.author) {
 		conditions.author = req.query.author.trim();
+	}
+	if (req.query.keyword) {
+		conditions.title = new RegExp(req.query.keyword.trim(), 'mig');
+		conditions.content = new RegExp(req.query.keyword.trim(), 'mig');
 	}
 	User.find({}, function (err, authors) {
 		if (err) {
@@ -59,13 +63,14 @@ router.get('/', function (req, res, next) {
 				authors: authors,
 				filter: {
 					category: req.query.category || "",
-					author: req.query.author || ""
+					author: req.query.author || "",
+					keyword: req.query.keyword || ""
 				}
 			});
 		});
 	});
 });
-router.get('/add', function (req, res, next) {
+router.get('/add', auth.requireLogin, function (req, res, next) {
 	res.render('admin/post/add', {
 		pretty: true,
 		action: "/admin/posts/add",
@@ -76,7 +81,7 @@ router.get('/add', function (req, res, next) {
 		}
 	});
 });
-router.post('/add', function (req, res, next) {
+router.post('/add', auth.requireLogin, function (req, res, next) {
 	//服务端校验
 	req.checkBody('title', '文章标题不能为空').notEmpty();
 	req.checkBody('category', '必须指定文章分类').notEmpty();
@@ -129,13 +134,13 @@ router.post('/add', function (req, res, next) {
 		});
 	});
 });
-router.get('/edit/:id', getPostById, function (req, res, next) {
+router.get('/edit/:id', auth.requireLogin, getPostById, function (req, res, next) {
 	res.render('admin/post/add', {
 		post: req.post,
 		action: "/admin/posts/edit/" + req.post._id
 	});
 });
-router.post('/edit/:id', getPostById, function (req, res, next) {
+router.post('/edit/:id', auth.requireLogin, getPostById, function (req, res, next) {
 	var post = req.post;
 	var title = req.body.title.trim();
 	var category = req.body.category.trim();
@@ -164,7 +169,7 @@ router.post('/edit/:id', getPostById, function (req, res, next) {
 		}
 	});
 });
-router.get('/delete/:id', function (req, res, next) {
+router.get('/delete/:id', auth.requireLogin, function (req, res, next) {
 	if (!req.params.id) {
 		return next(new Error('no post id provided!'));
 	}
