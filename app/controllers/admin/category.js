@@ -45,7 +45,8 @@ router.post('/add', auth.requireLogin, function (req, res, next) {
 	var category = new Category({
 		title: title,
 		slug: slug(py),
-		created: new Date()
+		created: new Date(),
+		author: req.user
 	});
 	category.save(function (err, category) {
 		if (err) {

@@ -14,6 +14,10 @@ var CategorySchema = new Schema({
 	},
 	created: {
 		type: Date
+	},
+	author: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
 	}
 });
 

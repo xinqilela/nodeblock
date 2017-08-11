@@ -3,7 +3,7 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	Post = mongoose.model('Post'),
 	Category = mongoose.model('Category');
-
+var auth = require('../admin/user');
 module.exports = function (app) {
 	app.use('/posts', router);
 };
@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
 			pageNum: pageNum,
 			pageCount: pageCount,
 			pretty: true,
-			keyword: req.query.keyword
+			keyword: req.query.keyword || ""
 		});
 	});
 });
@@ -86,7 +86,7 @@ router.get('/view/:id', function (req, res, next) {
 		});
 	});
 });
-router.get('/favorite/:id', function (req, res, next) {
+router.get('/favorite/:id', auth.requireLogin, function (req, res, next) {
 
 	if (!req.params.id) {
 		return next(new Error('no post id in provided!'));
@@ -112,10 +112,7 @@ router.get('/favorite/:id', function (req, res, next) {
 		});
 	});
 });
-router.post('/comment/:id', function (req, res, next) {
-	if (!req.body.email) {
-		return next(new Error("no email provided for comment!"));
-	}
+router.post('/comment/:id', auth.requireLogin, function (req, res, next) {
 	if (!req.body.text) {
 		return next(new Error("no content provided for coment!"));
 	}
@@ -132,7 +129,7 @@ router.post('/comment/:id', function (req, res, next) {
 			return next(err);
 		}
 		var comment = {
-			email: req.body.email,
+			email: req.user.email,
 			content: req.body.text,
 			created: new Date()
 		};

@@ -38,9 +38,6 @@ block content
                     p.alert.alert-info 还没有评论	
             form.post-comment-form(action="/posts/comment/"+post.slug,method="post",enctype="application/x-www-form-urlencoded")
                 div.form-group
-                    label(for="email") 邮箱
-                    input.form-control(type="text",name="email",placeholder="请输入邮箱")
-                div.form-group
                     label(for="content") 内容
                     textarea.form-control(type="text",name="text",placeholder="请输入评论")
                 button.btn.btn-primary 评论					

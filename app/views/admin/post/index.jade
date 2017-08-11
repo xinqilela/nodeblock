@@ -11,12 +11,6 @@ block content
                 each category in categories
                     option(value=category._id,selected=(category._id.toString() === filter.category))= category.title
         div.form-group
-            label 作者
-            select#js-author.form-control(name="author")
-                option(value="",selected=(filter.author === "")) -选择作者-
-                each author in authors
-                    option(value=author._id,selected=(author._id.toString() === filter.author))= author.name
-        div.form-group
             label 关键词
             input#js-keyword.form-control(name="keyword",type="text",value=filter.keyword)
         button#js-filter-submit.btn.btn-info 筛选					

@@ -2,7 +2,6 @@ extends ../layout
 
 block content
     h2.page-header 添加文章
-
     if errors && errors.length
         div.errors
             each error in errors
@@ -20,7 +19,7 @@ block content
         div.form-group
             label(for="content") 内容
             textarea#js-post-content.form-control(name="content",required="true")= post.content
-        button.btn.btn-info(type="submit")= post ? '保存修改' : '发布'
+        button.btn.btn-info(type="submit")= post.category._id ? '保存修改' : '发布'
 block scripts
     script(src="/js/ckeditor/ckeditor.js")
     script(src="/js/admin/post.js")

@@ -29,17 +29,17 @@ router.get('/', auth.requireLogin, function (req, res, next) {
 	if (req.query.category) {
 		conditions.category = req.query.category.trim();
 	}
-	if (req.query.author) {
-		conditions.author = req.query.author.trim();
-	}
 	if (req.query.keyword) {
 		conditions.title = new RegExp(req.query.keyword.trim(), 'mig');
 		conditions.content = new RegExp(req.query.keyword.trim(), 'mig');
 	}
-	User.find({}, function (err, authors) {
+	User.findOne({
+		_id: req.user._id
+	}, function (err, author) {
 		if (err) {
 			return next(err);
 		}
+		conditions.author = author;
 		Post.find(conditions).sort(sortObj).populate('author').populate('category').exec(function (err, posts) {
 
 			if (err) {
@@ -60,7 +60,7 @@ router.get('/', auth.requireLogin, function (req, res, next) {
 				sortdir: sortdir,
 				sortby: sortby,
 				pretty: true,
-				authors: authors,
+				author: author,
 				filter: {
 					category: req.query.category || "",
 					author: req.query.author || "",
@@ -82,6 +82,7 @@ router.get('/add', auth.requireLogin, function (req, res, next) {
 	});
 });
 router.post('/add', auth.requireLogin, function (req, res, next) {
+	//return res.send(req.user);
 	//服务端校验
 	req.checkBody('title', '文章标题不能为空').notEmpty();
 	req.checkBody('category', '必须指定文章分类').notEmpty();
@@ -99,7 +100,9 @@ router.post('/add', auth.requireLogin, function (req, res, next) {
 	var title = req.body.title.trim();
 	var category = req.body.category.trim();
 	var content = req.body.content;
-	User.findOne({}, function (err, author) {
+	User.findOne({
+		_id: req.user._id
+	}, function (err, author) {
 		if (err) {
 			return next(err);
 		}
@@ -157,6 +160,7 @@ router.post('/edit/:id', auth.requireLogin, getPostById, function (req, res, nex
 	post.category = category;
 	post.content = content;
 	post.slug = slug(py);
+	post.author = req.user;
 
 	post.save(function (err, post) {
 		if (err) {
