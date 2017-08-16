@@ -3,7 +3,13 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
 	md5 = require('md5'),
-	passport = require('passport');
+	passport = require('passport'),
+	multer = require('multer'),
+	config = require('../../../config/config');
+var User = mongoose.model('User');
+var upload = multer({
+	dest: config.root + '/public/img'
+});
 module.exports = function (app) {
 	app.use('/admin/users', router);
 };
@@ -15,6 +21,7 @@ module.exports.requireLogin = function (req, res, next) {
 		res.redirect('/admin/users/login');
 	}
 };
+//登录
 router.get('/login', function (req, res, next) {
 	res.render('admin/user/login', {
 		pretty: true
@@ -27,6 +34,7 @@ router.post('/login', passport.authenticate('local', {
 	console.log('user login success:', req.body);
 	res.redirect('/admin/posts');
 });
+//注册
 router.get('/register', function (req, res, next) {
 	res.render('admin/user/register', {
 		pretty: true
@@ -63,6 +71,39 @@ router.post('/register', function (req, res, next) {
 
 	});
 });
+
+//用户信息
+router.get('/message/:id', function (req, res, next) {
+	res.render('admin/user/userinfo', {
+		pretty: true
+	});
+});
+router.post('/message/:id', upload.single('img'), function (req, res, next) {
+
+	User.findOne({
+		_id: req.user._id
+	}, function (err, user) {
+		if (err) {
+			return next(err);
+		} else {
+			user.img = '/img/' + req.file.filename;
+			user.save(function (err, user) {
+				if (err) {
+					console.log('上传头像失败!');
+					req.flash('error', '上传头像失败!');
+				} else {
+					res.render('admin/user/userinfo', {
+						pretty: true,
+						userimg: user.img
+					});
+					console.log('上传头像成功!');
+					req.flash('info', '上传头像成功!');
+				}
+			});
+		}
+	});
+});
+//退出
 router.get('/loginout', function (req, res, next) {
 	req.logout();
 	res.redirect('/');

@@ -18,7 +18,9 @@ block main
           ul.nav.navbar-nav.navbar-right
             if user
               li
-                a= user.email
+                a(href='/admin/users/message/'+user.id)
+                    img.user-img(src=user.img||'/img/timg.jpg')
+                    = user.name					
               li
                 a(href="/admin/users/loginout")
                   i.fa.fa-unlock-alt

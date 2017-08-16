@@ -16,10 +16,6 @@ block content
                 span.post-author
                     | 作者:
                     =post.author.name
-                span.post-category
-                    | 分类:
-                    a(href="/posts/category/"+post.category.title,target="_blank")
-                        =post.category.title
                 span.post-comment
                     | 评论:
                     =post.comment.length||0
@@ -34,9 +30,9 @@ block content
             ul.pagination
                 -var currentPage=1
                 while currentPage<=pageCount
-                    if(currentPage==pageNum)				
+                    if(currentPage==pageNum)
                         li.active
                             a(href="/posts?page="+currentPage+"&keyword="+keyword)= currentPage++
-                    else	
+                    else
                         li
-                            a(href="/posts?page="+currentPage+"&keyword="+keyword)= currentPage++                    					
+                            a(href="/posts?page="+currentPage+"&keyword="+keyword)= currentPage++			

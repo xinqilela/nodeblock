@@ -73,6 +73,13 @@ body {
 	padding-left: 20px;
 }
 
+.user-img {
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	margin-right: 5px;
+}
+
 .nav-sidebar>.active>a,
 .nav-sidebar>.active>a:hover,
 .nav-sidebar>.active>a:focus {

@@ -6,11 +6,12 @@ var express = require('express'),
 	Category = mongoose.model('Category'),
 	User = mongoose.model('User'),
 	pinyin = require('pinyin');
-var auth = require('./user');
+var auth = require('./user'),
+	category = require('./category');
 module.exports = function (app) {
 	app.use('/admin/posts', router);
 };
-router.get('/', auth.requireLogin, function (req, res, next) {
+router.get('/', auth.requireLogin, category.getMyCategories, function (req, res, next) {
 
 	//排序功能
 	var sortby = req.query.sortby ? req.query.sortby : 'created';
@@ -61,6 +62,7 @@ router.get('/', auth.requireLogin, function (req, res, next) {
 				sortby: sortby,
 				pretty: true,
 				author: author,
+				mycategories: req.mycategories,
 				filter: {
 					category: req.query.category || "",
 					author: req.query.author || "",
@@ -70,10 +72,11 @@ router.get('/', auth.requireLogin, function (req, res, next) {
 		});
 	});
 });
-router.get('/add', auth.requireLogin, function (req, res, next) {
+router.get('/add', auth.requireLogin, category.getMyCategories, function (req, res, next) {
 	res.render('admin/post/add', {
 		pretty: true,
 		action: "/admin/posts/add",
+		mycategories: req.mycategories,
 		post: {
 			category: {
 				_id: ""
@@ -137,10 +140,11 @@ router.post('/add', auth.requireLogin, function (req, res, next) {
 		});
 	});
 });
-router.get('/edit/:id', auth.requireLogin, getPostById, function (req, res, next) {
+router.get('/edit/:id', auth.requireLogin, getPostById, category.getMyCategories, function (req, res, next) {
 	res.render('admin/post/add', {
 		post: req.post,
-		action: "/admin/posts/edit/" + req.post._id
+		action: "/admin/posts/edit/" + req.post._id,
+		mycategories: req.mycategories
 	});
 });
 router.post('/edit/:id', auth.requireLogin, getPostById, function (req, res, next) {

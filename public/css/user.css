@@ -45,3 +45,10 @@ body {
 	margin-right: 5px;
 	margin-bottom: 5px;
 }
+
+.user-img,
+.user-img img {
+	background: red;
+	width: 100px;
+	height: 100px;
+}

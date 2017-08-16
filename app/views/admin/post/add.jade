@@ -14,7 +14,7 @@ block content
             label(for="category") 分类
             select.form-control.input-lg(name="category",required)
                 option(value="") -请选择分类-
-                each category in categories
+                each category in mycategories
                     option(value=category._id,selected=(category._id.toString()===post.category._id.toString()))= category.title				
         div.form-group
             label(for="content") 内容

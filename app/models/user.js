@@ -18,6 +18,9 @@ var UserSchema = new Schema({
 	},
 	created: {
 		type: Date
+	},
+	img: {
+		type: String
 	}
 });
 UserSchema.methods.verifyPassword = function (password) {

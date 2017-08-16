@@ -87,7 +87,6 @@ router.get('/view/:id', function (req, res, next) {
 	});
 });
 router.get('/favorite/:id', auth.requireLogin, function (req, res, next) {
-
 	if (!req.params.id) {
 		return next(new Error('no post id in provided!'));
 	}

@@ -9,10 +9,15 @@ var auth = require('./user');
 module.exports = function (app) {
 	app.use('/admin/categories', router);
 };
-router.get('/', auth.requireLogin, function (req, res, next) {
+module.exports.getMyCategories = myCategories;
+router.get('/', auth.requireLogin, myCategories, function (req, res, next) {
+
 	res.render('admin/category/index', {
-		pretty: true
+		pretty: true,
+		mycategories: req.mycategories
 	});
+
+
 });
 router.get('/add', auth.requireLogin, function (req, res, next) {
 	res.render('admin/category/add', {
@@ -118,3 +123,16 @@ function getCategoryById(req, res, next) {
 		next();
 	});
 }
+
+function myCategories(req, res, next) {
+	Category.find({
+		author: req.user._id
+	}, function (err, categories) {
+		if (err) {
+			return next(err);
+		} else {
+			req.mycategories = categories;
+			next();
+		}
+	});
+};
