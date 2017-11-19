@@ -64,7 +64,7 @@ module.exports = function (app, config, connection) {
 	}));
 	app.use(cookieParser());
 	app.use(session({
-		secret: 'nodeblock',
+		secret: 'nodeblog',
 		resave: false,
 		saveUninitialized: true,
 		cookie: {

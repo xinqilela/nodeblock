@@ -13,7 +13,7 @@ block content
         div.form-group
             label 关键词
             input#js-keyword.form-control(name="keyword",type="text",value=filter.keyword)
-        button#js-filter-submit.btn.btn-info 筛选					
+        button#js-filter-submit.btn.btn-info 筛选
     table.table.table-bordered
         thead
             tr
@@ -29,7 +29,7 @@ block content
                                     &nbsp;标题
                     else
                         a(href='/admin/posts?page='+pageNum+'&sortby=title&sortdir=desc')
-                            标题					
+                            标题
                 th
                     if sortby === 'category'
                         if (sortdir==='desc')
@@ -42,8 +42,8 @@ block content
                                     &nbsp;分类
                     else
                         a(href='/admin/posts?page='+pageNum+'&sortby=category&sortdir=desc')
-                            分类									
-                th 
+                            分类
+                th
                     if sortby === 'author'
                         if (sortdir==='desc')
                             a(href='/admin/posts?page='+pageNum+'&sortby=author&sortdir=asc')
@@ -55,8 +55,8 @@ block content
                                     &nbsp;作者
                     else
                         a(href='/admin/posts?page='+pageNum+'&sortby=author&sortdir=desc')
-                            作者					
-                th 
+                            作者
+                th
                     if sortby === 'created'
                         if (sortdir==='desc')
                             a(href='/admin/posts?page='+pageNum+'&sortby=created&sortdir=asc')
@@ -68,10 +68,10 @@ block content
                                     &nbsp;添加时间
                     else
                         a(href='/admin/posts?page='+pageNum+'&sortby=created&sortdir=desc')
-                            添加时间					
+                            添加时间
                 th 赞
                 th 评论
-                th 
+                th
                     if sortby === 'published'
                         if (sortdir==='desc')
                             a(href='/admin/posts?page='+pageNum+'&sortby=published&sortdir=asc')
@@ -83,35 +83,35 @@ block content
                                     &nbsp;状态
                     else
                         a(href='/admin/posts?page='+pageNum+'&sortby=published&sortdir=desc')
-                            状态					
+                            状态
                 th 管理
         tbody
         each post in posts
-            tr		
-                td		
-                     a(href="/posts/view/"+post._id,target="_blank")= post.title		
-                td= post.category.title		
-                td= post.author.email		
-                td= moment(post.created).format('YYYY-MM-DD HH:mm:ss')		
-                td= post.meta.favourates||0		
-                td= post.comment.length		
-                td= post.published? '已发布':'待发布'		
-                td		
+            tr
+                td
+                     a(href="/posts/view/"+post._id,target="_blank")= post.title
+                td= post.category.title
+                td= post.author.email
+                td= moment(post.created).format('YYYY-MM-DD HH:mm:ss')
+                td= post.meta.fabulous||0
+                td= post.comment.length
+                td= post.published? '已发布':'待发布'
+                td
                     a(href="/posts/view/"+post._id,class="btn btn-sm btn-success",target="_blank") 查看
                     &nbsp;
                     a(href="/admin/posts/edit/"+post._id,class="btn btn-sm btn-info") 编辑
-                    &nbsp;					
+                    &nbsp;
                     a(href="/admin/posts/delete/"+post._id,class="btn btn-sm btn-danger") 删除
-                    &nbsp;					
+                    &nbsp;
     if pageCount>1
         nav
             ul.pagination
                 -var currentPage=1
                 while currentPage<=pageCount
-                    if(currentPage==pageNum)				
+                    if(currentPage==pageNum)
                         li.active
                             a(href="/admin/posts?page="+currentPage+"&sortby="+sortby+"&sortdir="+sortdir+"&category="+filter.category+"&author="+filter.author+"&keyword="+filter.keyword)= currentPage++
-                    else	
+                    else
                         li
                             a(href="/admin/posts?page="+currentPage+"&sortby="+sortby+"&sortdir="+sortdir+"&category="+filter.category+"&author="+filter.author+"&keyword="+filter.keyword)= currentPage++
 block scripts

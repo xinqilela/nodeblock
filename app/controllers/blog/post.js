@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
 		if (pageNum > pageCount) {
 			pageNum = pageCount;
 		}
-		res.render('block/index', {
+		res.render('blog/index', {
 			posts: posts.slice((pageNum - 1) * pageSize, pageNum * pageSize),
 			pageNum: pageNum,
 			pageCount: pageCount,
@@ -54,7 +54,7 @@ router.get('/category/:title', function (req, res, next) {
 			if (err) {
 				return next(err);
 			}
-			res.render('block/category', {
+			res.render('blog/category', {
 				posts: posts,
 				pretty: true,
 				category: category
@@ -81,7 +81,7 @@ router.get('/view/:id', function (req, res, next) {
 		if (err) {
 			return next(err);
 		}
-		res.render('block/view', {
+		res.render('blog/view', {
 			post: post
 		});
 	});
@@ -104,7 +104,7 @@ router.get('/favorite/:id', auth.requireLogin, function (req, res, next) {
 		if (err) {
 			return next(err);
 		}
-		post.meta.favourates = post.meta.favourates ? post.meta.favourates + 1 : 1;
+		post.meta.fabulous = post.meta.fabulous ? post.meta.fabulous + 1 : 1;
 		post.markModified('meta');
 		post.save(function (err) {
 			res.redirect('/posts/view/' + post.slug);

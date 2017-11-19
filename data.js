@@ -46,7 +46,7 @@ User.findOne(function (err, user) {
 					author: user,
 					published: true,
 					meta: {
-						favourates: 0
+						fabulous: 0
 					},
 					comment: [],
 					created: new Date

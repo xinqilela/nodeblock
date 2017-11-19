@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    each post in posts
+        div.post
+            div.post-title
+                a(href="/posts/view/"+post.slug,target="_blank")
+                    =post.title
+            div.post-meta
+                span.post-created
+                    | 时间:
+                    =moment(post.created).format('YYYY年MM月DD日')
+                span.post-author
+                    | 作者:
+                    =post.author.name
+                span.post-comment
+                    | 评论:
+                    =post.comment.length||0
+                span.post-favorite
+                    | 赞:
+                    =post.meta.fabulous||0
+                span.post-link
+                    a(href="/posts/view/"+post.slug,target="_blank")
+                        |文章详情
+            div.post-abstract
+              =truncate(post.content, 160)
+    if pageCount>1
+        nav
+            ul.pagination
+                -var currentPage=1
+                while currentPage<=pageCount
+                    if(currentPage==pageNum)
+                        li.active
+                            a(href="/posts?page="+currentPage+"&keyword="+keyword)= currentPage++
+                    else
+                        li
+                            a(href="/posts?page="+currentPage+"&keyword="+keyword)= currentPage++

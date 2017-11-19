@@ -124,7 +124,7 @@ router.post('/add', auth.requireLogin, function (req, res, next) {
 			author: author,
 			published: true,
 			meta: {
-				favourates: 0
+        fabulous: 0
 			},
 			comment: [],
 			created: new Date()

@@ -6,28 +6,28 @@ var config = {
 	development: {
 		root: rootPath,
 		app: {
-			name: 'nodeblock'
+			name: 'nodeblog'
 		},
 		port: process.env.PORT || 3000,
-		db: 'mongodb://localhost/nodeblock'
+		db: 'mongodb://localhost/nodeblog'
 	},
 
 	test: {
 		root: rootPath,
 		app: {
-			name: 'nodeblock'
+			name: 'nodeblog'
 		},
 		port: process.env.PORT || 3000,
-		db: 'mongodb://localhost/nodeblock-test'
+		db: 'mongodb://localhost/nodeblog-test'
 	},
 
 	production: {
 		root: rootPath,
 		app: {
-			name: 'nodeblock'
+			name: 'nodeblog'
 		},
 		port: process.env.PORT || 3000,
-		db: 'mongodb://localhost/nodeblock-production'
+		db: 'mongodb://localhost/nodeblog-production'
 	}
 };
 

@@ -5,6 +5,7 @@ append css
 	link(rel='stylesheet',href='/components/font-awesome/css/font-awesome.css')
 block main
 	block header
+		.blog-backgorund
 		.blog-masthead
 			.container
 				nav.blog-nav.pull-left
@@ -24,10 +25,10 @@ block main
 					input.form-control(type="text",name="keyword",placeholder="搜索...")
 	.container
 		.row
-			.col-sm-8.blog-main
+			.col-sm-9.blog-main
 				!=messages()
 				block content
-			.col-sm-3.col-sm-offset-1.blog-sidebar
+			.col-sm-2.col-sm-offset-1.blog-sidebar
 				.sidebar-module
 					h4 文章分类
 					ol.list-unstyled
