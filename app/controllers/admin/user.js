@@ -34,6 +34,11 @@ router.post('/login', passport.authenticate('local', {
 	console.log('user login success:', req.body);
 	res.redirect('/admin/posts');
 });
+router.post('/adminLogin',passport.authenticate('local'),
+	function(req,res,next){
+	console.log('user login success:', req.body);
+	res.redirect('/admin/manager/users');
+});
 //注册
 router.get('/register', function (req, res, next) {
 	res.render('admin/user/register', {
@@ -53,10 +58,11 @@ router.post('/register', function (req, res, next) {
 	}
 
 	var user = new User({
-		name: req.body.email.split('@').shift(),
+		username: req.body.email.split('@').shift(),
 		email: req.body.email,
 		password: md5(req.body.password),
-		created: new Date()
+		created: new Date(),
+		identify:0
 	});
 
 	user.save(function (err, user) {
@@ -66,7 +72,7 @@ router.post('/register', function (req, res, next) {
 			res.render('admin/user/register');
 		} else {
 			req.flash('info', '用户注册成功');
-			res.redirect('/admin/users/login');
+			res.render('admin/user/register');
 		}
 
 	});
@@ -79,7 +85,7 @@ router.get('/message/:id', function (req, res, next) {
 	});
 });
 router.post('/message/:id', upload.single('img'), function (req, res, next) {
-
+	
 	User.findOne({
 		_id: req.user._id
 	}, function (err, user) {
@@ -96,7 +102,6 @@ router.post('/message/:id', upload.single('img'), function (req, res, next) {
 						pretty: true,
 						userimg: user.img
 					});
-					console.log('上传头像成功!');
 					req.flash('info', '上传头像成功!');
 				}
 			});

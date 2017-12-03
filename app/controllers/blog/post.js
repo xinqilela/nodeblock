@@ -23,12 +23,13 @@ router.get('/', function (req, res, next) {
 			return next(err);
 		}
 		var pageNum = Math.abs(parseInt(req.query.page || 1, 10));
-		var pageSize = 10;
+		var pageSize = 5;
 		var totalCount = posts.length;
 		var pageCount = Math.ceil(totalCount / pageSize);
 		if (pageNum > pageCount) {
 			pageNum = pageCount;
 		}
+		// return res.send(posts);
 		res.render('blog/index', {
 			posts: posts.slice((pageNum - 1) * pageSize, pageNum * pageSize),
 			pageNum: pageNum,
@@ -36,6 +37,7 @@ router.get('/', function (req, res, next) {
 			pretty: true,
 			keyword: req.query.keyword || ""
 		});
+
 	});
 });
 router.get('/category/:title', function (req, res, next) {

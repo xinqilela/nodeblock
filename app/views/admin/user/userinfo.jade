@@ -1,9 +1,10 @@
 extends ../layout_user
 block content
-    form.form-vertical.col-md-3(method='post',action='/admin/users/'+user.id,enctype="multipart/form-data")
-        div.user-img
-            img(src=user.img||'/img/timg.jpg')           
-        div.form-group
-            label(for='name') 请选择要上传的头像
-            input(type='file',name='img')
-        button.btn.btn-primary(type='submit') 保存			
+    .userInfoContainer
+        form.form-vertical(enctype="multipart/form-data")
+            div.user-img
+                img(src=user.img||'/img/timg.jpg')           
+            div.form-group
+                label(for='name') 点击头像进行上传
+                input(type='file' name='img' id="imginput")
+            button.btn.btn-primary(type='submit') 保存			

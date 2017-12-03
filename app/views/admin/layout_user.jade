@@ -5,6 +5,15 @@ append css
     link(rel='stylesheet',href='/css/user.css')
 
 block main
-
+    block header
+        header
+            img(src='/img/logo.png')
+            span 博客系统                 	
     !=messages()
     block content
+    block footer
+        footer
+            div 博客系统 v1.0
+            div 探索Node.js技术，将js进行到底
+append scripts
+    script(type="text/javascript",src="/js/admin/login.js")

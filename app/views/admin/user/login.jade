@@ -1,14 +1,25 @@
 extends ../layout_user
 
 block content
-    form.form-signin(method="post",action="/admin/users/login")
-
-        h2.form-signin-heading 登陆
-
-        label.sr-only(for="email") 邮箱
-        input.email.form-control(name="email",type="email",placeholder="Email Address",required)
-        label.sr-only(for="password") 密码
-        input.password.form-control(name="password",type="password",placeholder="Password",required)
-        span#goRegister.pull-right
-                a(href="/admin/users/register") 前往注册
-        button.btn.btn-lg.btn-primary.btn-block(type="submit") 登陆
+    div#container
+        div#userLogin
+            div#radioGroup
+                span.left                   	
+                    input(type="radio" name="identify" hidden)
+                    | 管理员
+                span.right.active                  
+                    input(type="radio" name="identify" hidden)
+                    | 用户
+            form.form-signin(method="post")
+                .input-group
+                    span.input-group-addon
+                        i.fa.fa-envelope
+                    input.email.form-control(name="email",type="email",placeholder="Email Address",required)
+                .input-group
+                    span.input-group-addon
+                        i.fa.fa-key                                                            	
+                    input.password.form-control(name="password",type="password",placeholder="Password",required)
+                span#goRegister.pull-right
+                        i.fa.fa-hand-o-right                	
+                        a(href="/admin/users/register") 前往注册
+                button.btn.btn-lg.btn-block(type="submit") 登陆

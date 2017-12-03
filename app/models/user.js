@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 var md5 = require('md5');
 var UserSchema = new Schema({
-	name: {
+	username: {
 		type: String,
 		required: true
 	},
@@ -21,6 +21,9 @@ var UserSchema = new Schema({
 	},
 	img: {
 		type: String
+	},
+	identify:{
+		type:Number
 	}
 });
 UserSchema.methods.verifyPassword = function (password) {

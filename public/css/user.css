@@ -1,15 +1,81 @@
-body {
-	padding-top: 40px;
-	padding-bottom: 40px;
-	background-color: #eee;
+#container {
+	height: 600px;
+	background-image: url('../img/bg.jpg');
+	background-size: 100% 600px;
+	background-repeat: no-repeat;
+	position: relative;
 }
+#userLogin{
+	position: absolute;
+	right: 100px;
+	top: calc(300px - 190px);
+	background: #fff;
+	width: 330px;
+	height: 380px;
+	border-radius: 8px;
+}
+#radioGroup{
+	height: 55px;
+	line-height: 55px;
+}
+#radioGroup span{
+	display: inline-block;
+	height: inherit;
+	line-height: inherit;
+	width: 50%;
+	text-align: center;
+	font-size: 16px;
+	letter-spacing: 2px;
+	background: #fff;
+	color: gray;
+	cursor: pointer;
+}
+#radioGroup span.left{
+	border-top-left-radius: 8px;
+	border-bottom: 2px solid lightgray;
 
+}
+#radioGroup span.left.active{
+	border-right: 2px solid #8cc84b;
+	border-bottom: 2px solid #8cc84b;
+	color: #8cc84b;
+}
+#radioGroup span.right{
+	border-top-right-radius: 8px;
+	border-bottom: 2px solid lightgray;
+}
+#radioGroup span.right.active{
+	border-left: 2px solid #8cc84b;
+	border-bottom: 2px solid #8cc84b;
+	color: #8cc84b;
+}
+.registerContainer,.userInfoContainer{
+	border-bottom:1px solid lightgray;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.userInfoContainer .user-img{
+	cursor: pointer;
+}
+.userInfoContainer #imginput,.userInfoContainer button{
+	display: none;
+}
 .form-signin {
 	max-width: 330px;
 	padding: 15px;
-	margin: 0 auto;
+	margin: 30px auto;
 }
-
+.registerContainer .form-signin{
+	max-width: 400px;
+}
+.form-signin .input-group{
+	margin-bottom: 12px;
+}
+.form-signin .input-group-addon{
+	height: 44px !important;
+}
 .form-signin .form-signin-heading {
 	text-align: center;
 }
@@ -37,18 +103,62 @@ body {
 	z-index: 2;
 }
 
-.form-signin input {
-	margin-bottom: 10px;
-}
 
 .form-signin [id^="go"] {
 	margin-right: 5px;
 	margin-bottom: 5px;
 }
-
+.form-signin button{
+	background: #8cc84b;
+	color: #fff;
+	letter-spacing: 3px;
+	border:1px solid #52BE80;
+}
+.form-signin button:hover{
+	background: #58D68D;
+	color: #fff;
+}
+#goRegister{
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+#goRegister a,#goRegister i.fa,
+#goLogin a,#goLogin i.fa{
+	color: #229954;
+}
+#goRegister i.fa,
+#goLogin i.fa{
+	margin-right: 5px;
+}
 .user-img,
 .user-img img {
-	background: red;
+	background: #fff;
 	width: 100px;
 	height: 100px;
+}
+header{
+	height: 80px;
+	line-height: 80px;
+	padding-left: 150px;
+	font-size: 28px;
+}
+header img{
+	width: 120px;
+	height: 40px;
+}
+header span{
+	margin-left: 15px;
+	letter-spacing: 2px;
+	color: #333333;
+}
+footer{
+	height: 130px;
+	color:gray;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+footer div{
+	margin-bottom: 8px;
 }
