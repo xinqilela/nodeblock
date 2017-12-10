@@ -50,7 +50,7 @@ router.get('/category/:title', function (req, res, next) {
 		Post.find({
 			category: category,
 			published: true
-		}).sort({
+		}).populate('category').populate('author').sort({
 			'created': -1
 		}).exec(function (err, posts) {
 			if (err) {

@@ -1,4 +1,26 @@
 extends ../manager_layout.jade
 
 block content
-    div.content blogs
+    div.content
+        div.form-search
+            form.form-inline
+                .form-group
+                    label(for="blog").sr-only
+                    .input-group                   	
+                        input.form-control(placeholder="请输入博客标题",id="blog")
+                        span.input-group-addon
+                            i.fa.fa-search            	
+        div.table
+            table.table.table-striped
+                thead
+                    tr
+                        th.title 文章名称                        
+                        th.author 作者
+                        th.post-content 内容
+                        th.created 创建时间                        
+                        th.state 状态
+                        th.comment-number 评论数
+                        th.fabulous 赞
+                        th.step 踩                        
+                        th.operation 操作
+                tbody                                                                                                                                         	

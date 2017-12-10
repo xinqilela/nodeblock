@@ -273,6 +273,16 @@ nav {
   border-radius: 3px;
   padding-bottom: 10px;
 }
+.post-comments .comment-none{
+	height: 50px;
+	padding-left: 20px;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+}
+.fa-hand-o-down{
+	margin-right: 10px;
+}
 .form-group div.title,.post-comments div.title{
   padding-left: 10px;
   height: 40px;

@@ -1,4 +1,32 @@
 extends ../manager_layout.jade
 
 block content
-    div.content aaaaaaaaaaaa
+    div.content
+        div.form-search
+            form.form-inline()
+                .form-group
+                    label(for="username").sr-only
+                    .input-group                   	
+                        input.form-control(placeholder="请输入用户名",id="username",name="username")
+                        span.input-group-addon.fingUser
+                            i.fa.fa-search                                                                                	
+        div.content-table
+            table.table.table-striped
+                thead
+                    tr
+                        th.name 用户名
+                        th.email 邮箱
+                        th.created 创建时间
+                        th.img 头像
+                        th.operation 操作
+                tbody
+                    each user in users
+                        tr
+                            td
+                                a.username(href="/admin/manager/users/userinfo/"+user._id)= user.username
+                            td= user.email
+                            td= moment(user.created).format('YYYY年MM月DD日 hh:mm:ss')
+                            td
+                                img.user-img(src=user.img||"/img/timg.jpg")                          	
+                            td
+                                a.delete(href="/admin/manager/users/delete/"+user._id)删除                                                                                                                                                                                                                                                                                                                 	            

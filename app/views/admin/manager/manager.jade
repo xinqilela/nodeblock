@@ -1,4 +1,22 @@
 extends ../manager_layout.jade
 
 block content
-    div.content managers
+    div.content
+        div.form-search
+            form.form-inline
+                .form-group
+                    label(for="email").sr-only
+                    .input-group                   	
+                        input.form-control(placeholder="请输入管理员邮箱",id="email")
+                        span.input-group-addon
+                            i.fa.fa-search                                                                                	
+        div.table
+            table.table.table-striped
+                thead
+                    tr
+                        th.name 管理员
+                        th.email 邮箱
+                        th.created 创建时间
+                        th.img 头像
+                        th.operation 操作
+                tbody                                                                                                                                                         	

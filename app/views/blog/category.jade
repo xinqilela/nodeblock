@@ -23,11 +23,11 @@ block content
                 span.post-favorite
                     | 赞:
                     =post.meta.fabulous||0
-                span.post-link
-                    a(href="/posts/view/"+post._id,target="_blank")
-                        |文章详情
             div.post-abstract
               =truncate(post.content, 160)
+            div.post-link
+                a(href="/posts/view/"+post._id,target="_blank")
+                    |阅读全文             
     if pageCount>1
         nav
             ul.pagination

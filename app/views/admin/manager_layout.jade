@@ -13,39 +13,34 @@ block main
             .userInfo
                 img.user-img(src=''||'/img/timg.jpg')
                 a(href="") 退出
-    block sideList
-        ul.link-group   	
-            li(data-toggle="collapse" href="#collapseTwo" class={active:pageName==="/admin/manager/users"||pageName==="/admin/manager/managers"})
-                a(href="/admin/manager/users")
-                    i.fa.fa-users
-                    | &nbsp; 用户管理
-            #collapseTwo.panel-collapse.collapse
-                ul.user-manager
-                    li
-                        a(href="/admin/manager/users")
-                            i.fa.fa-user-o
-                            | &nbsp; 普通用户
-                    li
-                        a(href="/admin/manager/managers")
-                            i.fa.fa-user
-                            | &nbsp; 管理员用户                                                                    
-            li(class={active:pageName==="/admin/manager/categories"})
-                a(href="/admin/manager/categories")
-                    i.fa.fa-bookmark-o
-                    | &nbsp; 分类管理            
-            li(class={active:pageName==="/admin/manager/comments"})
-                a(href="/admin/manager/comments")
-                    i.fa.fa-comments-o
-                    | &nbsp; 评论管理            	
-            li(class={active:pageName==="/admin/manager/blogs"})
-                a(href="/admin/manager/blogs")
-                    i.fa.fa-file-code-o
-                    | &nbsp; 博客管理            	
-            li(class={active:pageName==="/admin/manager/chart"})
-                a(href="/admin/manager/chart")
-                    i.fa.fa-area-chart
-                    | &nbsp; 信息统计                                    
-    block content
+    .contentWraper                
+        block sideList
+            ul.link-group   	
+                li(class={active:pageName==="/admin/manager/users"})
+                    a(href="/admin/manager/users")
+                        i.fa.fa-user-o
+                        | &nbsp; 普通用户
+                li(class={active:pageName==="/admin/manager/managers"})
+                    a(href="/admin/manager/managers")
+                        i.fa.fa-user
+                        | &nbsp; 管理员用户                                                               
+                li(class={active:pageName==="/admin/manager/categories"})
+                    a(href="/admin/manager/categories")
+                        i.fa.fa-bookmark-o
+                        | &nbsp; 分类管理            
+                li(class={active:pageName==="/admin/manager/comments"})
+                    a(href="/admin/manager/comments")
+                        i.fa.fa-comments-o
+                        | &nbsp; 评论管理            	
+                li(class={active:pageName==="/admin/manager/blogs"})
+                    a(href="/admin/manager/blogs")
+                        i.fa.fa-file-code-o
+                        | &nbsp; 博客管理            	
+                li(class={active:pageName==="/admin/manager/chart"})
+                    a(href="/admin/manager/chart")
+                        i.fa.fa-area-chart
+                        | &nbsp; 信息统计                                    
+        block content
     block footer
         footer
             div 博客系统 v1.0

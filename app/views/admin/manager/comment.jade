@@ -1,4 +1,23 @@
 extends ../manager_layout.jade
 
 block content
-    div.content comments
+    div.content
+        div.form-search
+            form.form-inline
+                .form-group
+                    label(for="comment").sr-only
+                    .input-group                   	
+                        input.form-control(placeholder="请输入作者名称",id="comment")
+                        span.input-group-addon
+                            i.fa.fa-search            	
+        div.table
+            table.table.table-striped
+                thead
+                    tr
+                        th.post 文章名称                        
+                        th.author 作者
+                        th.comment-content 评论内容
+                        th.response 回复数量
+                        th.created 创建时间              
+                        th.operation 操作
+                tbody                                                                                                                                         	

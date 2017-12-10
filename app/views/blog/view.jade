@@ -9,7 +9,7 @@ block content
                 =moment(post.created).format('YYYY-MM-DD')
             span.post-author
                 i.fa.fa-user-o &nbsp;
-                =post.author.name
+                =post.author.username
             span.post-category
                 i.fa.fa-columns &nbsp;
                 a(href="/posts/category/"+post.category.title,target="_blank")
@@ -21,7 +21,7 @@ block content
                 a(href="/posts/favorite/"+post.slug)
                     i.fa.fa-thumbs-o-up &nbsp;
                     =post.meta.fabulous||0
-        div.post-content
+        div.post-abstract
             !=post.content
     div.post-comments
         div.title 用户评论
@@ -34,7 +34,9 @@ block content
                         p.post-comment-content
                         = comment.content
             else
-                p.alert.alert-info 还没有评论
+                div.comment-none
+                    i.fa.fa-hand-o-down
+                    | 暂无评论，快来评论吧                        
     form.post-comment-form(action="/posts/comment/"+post.slug,method="post",enctype="application/x-www-form-urlencoded")
         div.form-group
             div.title

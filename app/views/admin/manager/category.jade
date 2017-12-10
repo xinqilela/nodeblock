@@ -1,4 +1,21 @@
 extends ../manager_layout.jade
 
 block content
-    div.content categories
+    div.content
+        div.form-search
+            form.form-inline
+                .form-group
+                    label(for="category").sr-only
+                    .input-group                   	
+                        input.form-control(placeholder="请输入分类名称",id="category")
+                        span.input-group-addon
+                            i.fa.fa-search                                                                                	
+        div.table
+            table.table.table-striped
+                thead
+                    tr
+                        th.name 分类名称
+                        th.created 创建时间
+                        th.author 创建者
+                        th.operation 操作
+                tbody                                                                                                                                         	

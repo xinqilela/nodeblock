@@ -1,0 +1,13 @@
+extends ../manager_layout.jade
+
+block content
+    div.content
+        div.user-userinfo
+            div.head
+                img(src=userimg)
+            div.userinfo-container
+                div.name= username
+                div.email-container
+                    span.email= email 
+                    span.identify= identify==0? '普通用户':'管理员'                                     	
+        div.user-posts    	
