@@ -6,11 +6,11 @@ block content
             form.form-inline
                 .form-group
                     label(for="blog").sr-only
-                    .input-group                   	
-                        input.form-control(placeholder="请输入博客标题",id="blog")
-                        span.input-group-addon
+                    #input-group                   	
+                        input.form-control(placeholder="请输入博客标题",id="blog",name="title")
+                        button.fingUser(type="submit")
                             i.fa.fa-search            	
-        div.table
+        div.content-table
             table.table.table-striped
                 thead
                     tr
@@ -19,8 +19,28 @@ block content
                         th.post-content 内容
                         th.created 创建时间                        
                         th.state 状态
-                        th.comment-number 评论数
-                        th.fabulous 赞
-                        th.step 踩                        
+                        th.fabulous 赞                   
                         th.operation 操作
-                tbody                                                                                                                                         	
+                tbody
+                    each post in posts
+                        tr
+                            td.title
+                                a(href="/posts/view/"+post.slug)= post.title
+                            td= post.author.username
+                            td.post-content= post.content
+                            td= moment(post.created).format('YYYY年MM月DD日 hh:mm:ss')
+                            td= post.published==true? '已发布':'未发布'
+                            td= post.meta.fabulous
+                            td
+                                a(href="") 删除
+        if totalPage>1
+            nav.page
+                ul.pagination
+                    -var currentPage=1
+                    while currentPage<=totalPage
+                        if(currentPage==curPage)
+                            li.active
+                                a(href="/admin/manager/blogs?page="+currentPage+"&keyword="+keyword)= currentPage++
+                        else
+                            li
+                                a(href="/admin/manager/blogs?page="+currentPage+"&keyword="+keyword)= currentPage++                                                                                                                                                                                                                                                                                                                                                                                                                                                                          	 

@@ -5,12 +5,12 @@ block content
         div.form-search
             form.form-inline
                 .form-group
-                    label(for="email").sr-only
-                    .input-group                   	
-                        input.form-control(placeholder="请输入管理员邮箱",id="email")
-                        span.input-group-addon
-                            i.fa.fa-search                                                                                	
-        div.table
+                    label(for="username").sr-only
+                    #input-group                   	
+                        input.form-control(placeholder="请输入管理员名称",id="username",name="username")
+                        button.fingUser(type="submit")
+                            i.fa.fa-search                                                                               	
+        div.content-table
             table.table.table-striped
                 thead
                     tr
@@ -19,4 +19,24 @@ block content
                         th.created 创建时间
                         th.img 头像
                         th.operation 操作
-                tbody                                                                                                                                                         	
+                tbody
+                    each manager in users
+                        tr
+                            td=   manager.username
+                            td=   manager.email                                   
+                            td=   moment(manager.created).format('YYYY年MM月DD日 hh:mm:ss')
+                            td
+                                img.user-img(src=manager.img||'/img/timg.jpg')
+                            td
+                                a(href="/admin/manager/managers/delete/"+manager._id) 删除
+        if totalPage>1
+            nav.page
+                ul.pagination
+                    -var currentPage=1
+                    while currentPage<=totalPage
+                        if(currentPage==curPage)
+                            li.active
+                                a(href="/admin/manager/managers?page="+currentPage+"&keyword="+keyword)= currentPage++
+                        else
+                            li
+                                a(href="/admin/manager/managers?page="+currentPage+"&keyword="+keyword)= currentPage++                                                                                                                                                                                                                                                                                                             

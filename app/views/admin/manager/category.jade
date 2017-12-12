@@ -6,11 +6,11 @@ block content
             form.form-inline
                 .form-group
                     label(for="category").sr-only
-                    .input-group                   	
-                        input.form-control(placeholder="请输入分类名称",id="category")
-                        span.input-group-addon
+                    #input-group                   	
+                        input.form-control(placeholder="请输入分类名称",id="category",name="title")
+                        button.fingUser(type="submit")
                             i.fa.fa-search                                                                                	
-        div.table
+        div.content-table
             table.table.table-striped
                 thead
                     tr
@@ -18,4 +18,23 @@ block content
                         th.created 创建时间
                         th.author 创建者
                         th.operation 操作
-                tbody                                                                                                                                         	
+                tbody
+                    each category in categories
+                        tr
+                            td
+                                a(href="/posts/category/"+category.title)= category.title
+                            td= moment(category.created).format('YYYY年MM月DD日 hh:mm:ss')
+                            td= category.author&&category.author.username||'-'
+                            td
+                                a(href="") 删除
+        if totalPage>1
+            nav.page
+                ul.pagination
+                    -var currentPage=1
+                    while currentPage<=totalPage
+                        if(currentPage==curPage)
+                            li.active
+                                a(href="/admin/manager/categories?page="+currentPage+"&keyword="+keyword)= currentPage++
+                        else
+                            li
+                                a(href="/admin/manager/categories?page="+currentPage+"&keyword="+keyword)= currentPage++                                                                        

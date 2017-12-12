@@ -207,6 +207,11 @@ nav {
   text-align: center;
   height: 80px;
   line-height: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .post-title a{
   color: #303030;
@@ -216,6 +221,9 @@ nav {
 .post-abstract {
 	padding:20px 20px 20px 20px;
 }
+.post-abstract img{
+	width: 100%;
+} 
 .post-link{
 	background: #8CC84B;
 	width: 90px;
@@ -250,20 +258,24 @@ nav {
 }
 
 .post-view .post-meta {
-	padding-bottom: 10px;
+	margin-top: 20px;
 }
-
+.post-category,.post-category a,.post-favorite a{
+	color: #8CC84B;
+}
 .post-view .post-content {
-	text-indent: 2em;
-	text-align: justify;
+  text-indent: 2em;
+  text-align: justify;
   margin-bottom: 20px;
   padding-bottom: 40px;
 }
 
 .post-view-title {
-	text-align: center;
+  padding-top: 20px;
+  text-align: center;
   height: 60px;
   line-height: 60px;
+  font-size: 22px;
 }
 
 .post-comments,
@@ -280,14 +292,27 @@ nav {
 	align-items: center;
 	font-size: 14px;
 }
+.user-img img{
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	margin-right: 10px;
+}
 .fa-hand-o-down{
 	margin-right: 10px;
 }
 .form-group div.title,.post-comments div.title{
   padding-left: 10px;
   height: 40px;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid #EBEDEF;
   line-height: 40px;
+}
+span.post-comment-email{
+	font-size: 13px;
+}
+.post-comment-content{
+	font-size: 14px;
+	margin-top: 10px;
 }
 .post-comment-form label,.post-comments div.title{
   font-size: 16px !important;
@@ -304,8 +329,7 @@ nav {
   left: 87%;
 }
 .post-comments .post-comment-item {
-	border-bottom: 1px solid #ccc;
-	margin-bottom: 10px;
+	border-bottom: 1px solid #EBEDEF;
 	padding: 2px 5px 2px 20px;
 }
 

@@ -10,13 +10,13 @@ block content
             span.post-author
                 i.fa.fa-user-o &nbsp;
                 =post.author.username
-            span.post-category
-                i.fa.fa-columns &nbsp;
-                a(href="/posts/category/"+post.category.title,target="_blank")
-                    =post.category.title
             span.post-comment &nbsp;
                 i.fa.fa-commenting-o &nbsp;
                 =post.comment.length||0
+            span.post-category
+                i.fa.fa-columns &nbsp;
+                a(href="/posts/category/"+post.category.title,target="_blank")
+                    =post.category.title                
             span.post-favorite &nbsp;
                 a(href="/posts/favorite/"+post.slug)
                     i.fa.fa-thumbs-o-up &nbsp;
@@ -29,10 +29,10 @@ block content
             if post.comment.length
                 each comment in post.comment
                     div.post-comment-item
-                        h4.post-comment-email
-                        = comment.email
-                        p.post-comment-content
-                        = comment.content
+                        span.user-img
+                            img(src=comment.img||'/img/timg.jpg')                              
+                        span.post-comment-email= comment.email
+                        p.post-comment-content= comment.content
             else
                 div.comment-none
                     i.fa.fa-hand-o-down

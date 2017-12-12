@@ -25,9 +25,9 @@ $(document).ready(function () {
 		$('.userInfoContainer #imginput').trigger('click');
 	});
 	$('.userInfoContainer #imginput').change(function(){
-		$('.userInfoContainer button').trigger('click');
+		$('.userInfoContainer button.upload_btn').trigger('click');
 	});
-	$('.userInfoContainer button').click(function(){
+	$('.userInfoContainer button.upload_btn').click(function(){
 		var url=window.location.href;
 		var id=url.substring(url.lastIndexOf('/')+1);
 		var file=$('#imginput')[0];

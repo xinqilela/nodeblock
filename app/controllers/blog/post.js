@@ -132,7 +132,8 @@ router.post('/comment/:id', auth.requireLogin, function (req, res, next) {
 		var comment = {
 			email: req.user.email,
 			content: req.body.text,
-			created: new Date()
+			created: new Date(),
+			img:req.user.img
 		};
 		post.comment.unshift(comment);
 		post.markModified('comment');

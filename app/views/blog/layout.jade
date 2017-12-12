@@ -19,8 +19,6 @@ block main
 							a.blog-nav-item.active(href="/posts/category/"+category.title)= category.title
 						else
 							a.blog-nav-item(href="/posts/category/"+category.title)= category.title	
-				form.navbar-form.pull-right(method="get",action="/posts/")
-					input.form-control(type="text",name="keyword",placeholder="搜索...")
 	.container
 		.row
 			.col-sm-9.blog-main
@@ -43,7 +41,3 @@ block main
 			p nodeblog by xinqilela.com
 			p
 				a(href="#") 回到顶部
-				&nbsp;&nbsp;
-				a(href="/admin/users/login") 用户登陆
-				&nbsp;&nbsp;
-				a(href="/admin/users/register") 用户注册

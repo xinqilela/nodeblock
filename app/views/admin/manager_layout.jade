@@ -12,7 +12,7 @@ block main
                 span 博客后台
             .userInfo
                 img.user-img(src=''||'/img/timg.jpg')
-                a(href="") 退出
+                a(href="/admin/manager/logout") 退出
     .contentWraper                
         block sideList
             ul.link-group   	
@@ -28,10 +28,6 @@ block main
                     a(href="/admin/manager/categories")
                         i.fa.fa-bookmark-o
                         | &nbsp; 分类管理            
-                li(class={active:pageName==="/admin/manager/comments"})
-                    a(href="/admin/manager/comments")
-                        i.fa.fa-comments-o
-                        | &nbsp; 评论管理            	
                 li(class={active:pageName==="/admin/manager/blogs"})
                     a(href="/admin/manager/blogs")
                         i.fa.fa-file-code-o
@@ -47,4 +43,5 @@ block main
             div 探索Node.js技术，将js进行到底  	
 
 append scripts
-    script(type="text/javascript",src="/js/admin/manager.js")    	
+    script(type="text/javascript",src="/js/admin/manager.js")
+    script(type="text/javascript",src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.8.5/echarts-en.common.min.js")       	

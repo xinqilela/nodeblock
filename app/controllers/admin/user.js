@@ -108,6 +108,9 @@ router.post('/message/:id', upload.single('img'), function (req, res, next) {
 		}
 	});
 });
+router.get('/password',function(req,res,next){
+	res.render('admin/user/userinfo');
+});
 //退出
 router.get('/loginout', function (req, res, next) {
 	req.logout();

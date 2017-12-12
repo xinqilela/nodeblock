@@ -52,14 +52,11 @@
 .registerContainer,.userInfoContainer{
 	border-bottom:1px solid lightgray;
 	height: 500px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 .userInfoContainer .user-img{
 	cursor: pointer;
 }
-.userInfoContainer #imginput,.userInfoContainer button{
+.userInfoContainer #imginput,.userInfoContainer button.upload_btn{
 	display: none;
 }
 .form-signin {

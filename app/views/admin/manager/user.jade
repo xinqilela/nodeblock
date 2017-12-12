@@ -3,12 +3,12 @@ extends ../manager_layout.jade
 block content
     div.content
         div.form-search
-            form.form-inline()
+            form.form-inline
                 .form-group
                     label(for="username").sr-only
-                    .input-group                   	
+                    #input-group                   	
                         input.form-control(placeholder="请输入用户名",id="username",name="username")
-                        span.input-group-addon.fingUser
+                        button.fingUser(type="submit")
                             i.fa.fa-search                                                                                	
         div.content-table
             table.table.table-striped
@@ -29,4 +29,15 @@ block content
                             td
                                 img.user-img(src=user.img||"/img/timg.jpg")                          	
                             td
-                                a.delete(href="/admin/manager/users/delete/"+user._id)删除                                                                                                                                                                                                                                                                                                                 	            
+                                a.delete(href="/admin/manager/users/delete/"+user._id)删除
+        if totalPage>1
+            nav.page
+                ul.pagination
+                    -var currentPage=1
+                    while currentPage<=totalPage
+                        if(currentPage==curPage)
+                            li.active
+                                a(href="/admin/manager/users?page="+currentPage+"&keyword="+keyword)= currentPage++
+                        else
+                            li
+                                a(href="/admin/manager/users?page="+currentPage+"&keyword="+keyword)= currentPage++                                                                                                                                                                                                                                                                                                                                                                           	            
