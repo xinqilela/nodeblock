@@ -59,6 +59,28 @@
 .userInfoContainer #imginput,.userInfoContainer button.upload_btn{
 	display: none;
 }
+#formContainer{
+	height: 400px;
+	margin-top: 50px;
+}
+#img-upload{
+	width: 250px;
+	padding-left: 69px;
+	margin: auto auto;
+}
+#formContainer #password{
+	width: 300px;
+}
+#formContainer #password-edit{
+	width: 300px;
+	margin: auto auto;
+}
+#password-edit button{
+	width: 300px;
+}
+#password-edit .userId{
+	display: none;
+}
 .form-signin {
 	max-width: 330px;
 	padding: 15px;

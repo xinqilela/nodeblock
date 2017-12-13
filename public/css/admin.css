@@ -133,3 +133,43 @@ body {
 	display: inline-block;
 	border-radius: 50%;
 }
+.userInfoContainer .user-img{
+	cursor: pointer;
+}
+.userInfoContainer #imginput,.userInfoContainer button.upload_btn{
+	display: none;
+}
+#formContainer{
+	height: 400px;
+	margin-top: 50px;
+}
+#img-upload{
+	width: 250px;
+	padding-left: 69px;
+	margin: auto auto;
+}
+#formContainer #password{
+	width: 300px;
+}
+#formContainer #password-edit{
+	width: 300px;
+	margin: auto auto;
+}
+#password-edit button{
+	width: 300px;
+}
+#password-edit .userId{
+	display: none;
+}
+#formContainer .user-img,
+#formContainer .user-img img {
+	background: #fff;
+	width: 100px;
+	height: 100px;
+}
+#formContainer input,#formContainer button{
+	height: 40px;
+}
+.add-post input,.add-post select{
+	width: 400px !important;
+}

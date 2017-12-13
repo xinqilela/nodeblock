@@ -307,8 +307,13 @@ nav {
   border-bottom: 1px solid #EBEDEF;
   line-height: 40px;
 }
-span.post-comment-email{
+span.post-comment-email,span.comment-created{
 	font-size: 13px;
+}
+span.comment-created{
+	position: absolute;
+	right: 50px;
+	top: 10px;
 }
 .post-comment-content{
 	font-size: 14px;
@@ -331,6 +336,7 @@ span.post-comment-email{
 .post-comments .post-comment-item {
 	border-bottom: 1px solid #EBEDEF;
 	padding: 2px 5px 2px 20px;
+	position: relative;
 }
 
 

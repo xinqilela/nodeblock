@@ -1,15 +1,23 @@
-extends ../layout_user
+extends ../layout
 block content
     .userInfoContainer
-        form#img-upload(enctype="multipart/form-data")
-            div.user-img
-                img(src=user.img||'/img/timg.jpg')           
-            div.form-group
-                label(for='name') 点击头像进行上传
-                input(type='file' name='img' id="imginput")
-            button.btn.btn-primary.upload_btn(type='submit') 保存
-        form.form-inline#password-edit
-            div.form-group(class="col-md-3")
-                label(for='password') 请输入新密码
-                input(type='password' name='password' id="password" class="form-control")
-             button.btn.btn-primary(type='submit') 提交
+        #formContainer
+            form#img-upload(enctype="multipart/form-data")
+                div.user-img
+                    img(src=user.img||'/img/timg.jpg')         
+                div.form-group
+                    label(for='name') 点击头像进行上传
+                    input(type='file' name='img' id="imginput")
+                button.btn.btn-primary.upload_btn(type='submit') 保存
+            form#password-edit
+                div.form-group
+                    span= user.username
+                    span.userId= user._id
+                div.form-group
+                    span= user.email                    
+                div.form-group
+                    input(type='password' name='password' id="password" class="form-control"
+                    placeholder="请输入新密码")
+                div.form-group
+                    input(type='password' class="form-control" placeholder="请确认您的密码")
+                button.btn.btn-primary.editPassword(type='submit') 提交

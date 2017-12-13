@@ -108,6 +108,26 @@ router.post('/message/:id', upload.single('img'), function (req, res, next) {
 		}
 	});
 });
+router.post('/editUser/:id', function (req, res, next) {
+	
+	User.findOne({
+		_id: req.user._id
+	}, function (err, user) {
+		if (err) {
+			return next(err);
+		} else {
+			user.password=md5(req.body.password);
+			user.save(function (err, user) {
+				if (err) {
+					console.log('密码修改失败！');
+					req.flash('error', '密码修改失败!');
+				} else {
+					res.render('admin/user/userinfo');
+				}
+			});
+		}
+	});
+});
 router.get('/password',function(req,res,next){
 	res.render('admin/user/userinfo');
 });

@@ -28,8 +28,7 @@ $(document).ready(function () {
 		$('.userInfoContainer button.upload_btn').trigger('click');
 	});
 	$('.userInfoContainer button.upload_btn').click(function(){
-		var url=window.location.href;
-		var id=url.substring(url.lastIndexOf('/')+1);
+		var id=$('span.userId').text();
 		var file=$('#imginput')[0];
 		var formdata=new FormData();
 		formdata.append('img',file.files[0]);
@@ -41,5 +40,14 @@ $(document).ready(function () {
     		contentType: false
         });
          
+	});
+	//用户密码修改
+	$('.editPassword').click(function(){
+		var id=$('span.userId').text();
+		var url="/admin/users/editUser/"+id;
+		var _password=$('#password').val();
+		$.post(url,{password:_password},function(){
+			alert('ok');
+		});
 	});
 });
